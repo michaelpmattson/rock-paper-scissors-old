@@ -5,11 +5,15 @@
   <meta charset="UTF-8"/>
 </head>
 <body>
+  <p>Go to the console and type "game();"</p>
   <script>
 
-    let computerSelection
-    let playerSelection
-    let result
+    let computerSelection;
+    let playerSelection;
+    let result;
+    let computerScore = 0;
+    let playerScore = 0;
+
 
     // Your game is going to play against the computer, so begin with a function called computerPlay that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. We’ll use this function in the game to make the computer’s play.
     function computerPlay() {
@@ -26,22 +30,19 @@
 
     //Write a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
     function rockPaperScissors(playerSelection, computerSelection) {
-      
-      //change to capitalized. this might move later.
-      playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
-      computerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
-
-
+            
       if (playerSelection == "Rock") {
         switch (computerSelection) {
           case "Rock":
-            result = "It's a tie. Try again."
+            result = "It's a tie. Try again."            
             break;
           case "Paper":
             result = "Paper beats rock. You lose.";
+            computerScore++;
             break;
           case "Scissors":
             result = "Rock beats scissors. You win.";
+            playerScore++;
             break;
           default:
             result = "I don't know how you got here. Try again.";
@@ -50,12 +51,14 @@
         switch (computerSelection) {
           case "Rock":
             result = "Paper beats Rock. You win."
+            playerScore++;
             break;
           case "Paper":
             result = "It's a tie. Try again.";
             break;
          case "Scissors":
             result = "Scissors beats paper. You lose";
+            computerScore++;
             break;
          default:
             result = "I don't know how you got here. Try again.";
@@ -64,9 +67,11 @@
         switch (computerSelection) {
           case "Rock":
             result = "Rock beats scissors. You lose."
+            computerScore++;
             break;
           case "Paper":
             result = "Scissors beats paper. You win.";
+            playerScore++;
             break;
           case "Scissors":
             result = "It's a tie. Try again.";
@@ -82,11 +87,22 @@
       
       // get the players choice:
       playerSelection = prompt("Pick one, meatbag:", "Rock, Paper, or Scissors");
+      // capitalize:
+      playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+
       while (playerSelection != "Rock" && playerSelection != "Paper" && playerSelection != "Scissors") {
         playerSelection = prompt("Try harder, sand-for-brains:", "Rock, Paper, or Scissors");
       }
       // end choice.
 
+      computerPlay();
+
+      rockPaperScissors(playerSelection, computerSelection);
+      
+      console.log(result);
+
+      
+      return "Here is where the score will go later.";
     }
 
   </script>
