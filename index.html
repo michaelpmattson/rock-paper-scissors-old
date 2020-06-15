@@ -6,18 +6,86 @@
 </head>
 <body>
   <script>
+
+    let computerSelection
+    let playerSelection
+    let result
+
     // Your game is going to play against the computer, so begin with a function called computerPlay that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. We’ll use this function in the game to make the computer’s play.
     function computerPlay() {
-        
+      let randomNumber = Math.floor(Math.random() * 3);
+      if (randomNumber == 0) {
+        computerSelection = "Rock";
+      } else if (randomNumber == 1) {
+        computerSelection = "Paper";
+      } else if (randomNumber == 2) {
+        computerSelection = "Scissors";
+      }
+      return computerSelection;
     }
 
     //Write a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
-    function rockPaperScissors() {
+    function rockPaperScissors(playerSelection, computerSelection) {
+      
+      //change to capitalized. this might move later.
+      playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+      computerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
 
-    }
 
+      if (playerSelection == "Rock") {
+        switch (computerSelection) {
+          case "Rock":
+            result = "It's a tie. Try again."
+            break;
+          case "Paper":
+            result = "Paper beats rock. You lose.";
+            break;
+          case "Scissors":
+            result = "Rock beats scissors. You win.";
+            break;
+          default:
+            result = "I don't know how you got here. Try again.";
+        }
+      } else if (playerSelection == "Paper") {
+        switch (computerSelection) {
+          case "Rock":
+            result = "Paper beats Rock. You win."
+            break;
+          case "Paper":
+            result = "It's a tie. Try again.";
+            break;
+         case "Scissors":
+            result = "Scissors beats paper. You lose";
+            break;
+         default:
+            result = "I don't know how you got here. Try again.";
+        }
+      } else if (playerSelection == "Scissors") {
+        switch (computerSelection) {
+          case "Rock":
+            result = "Rock beats scissors. You lose."
+            break;
+          case "Paper":
+            result = "Scissors beats paper. You win.";
+            break;
+          case "Scissors":
+            result = "It's a tie. Try again.";
+            break;
+          default:
+            result = "I don't know how you got here. Try again.";
+        }
+      }
+      return result;
+    }  
     //Write a NEW function called game(). Use the previous function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
     function game() {
+      
+      // get the players choice:
+      playerSelection = prompt("Pick one, meatbag:", "Rock, Paper, or Scissors");
+      while (playerSelection != "Rock" && playerSelection != "Paper" && playerSelection != "Scissors") {
+        playerSelection = prompt("Try harder, sand-for-brains:", "Rock, Paper, or Scissors");
+      }
+      // end choice.
 
     }
 
