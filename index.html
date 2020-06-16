@@ -11,8 +11,10 @@
     let computerSelection;
     let playerSelection;
     let result;
+    let endResult;
     let computerScore = 0;
     let playerScore = 0;
+    let gameCount = 0;
 
 
     // Your game is going to play against the computer, so begin with a function called computerPlay that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. We’ll use this function in the game to make the computer’s play.
@@ -84,7 +86,6 @@
     }  
     //Write a NEW function called game(). Use the previous function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
     function game() {
-      
       // get the players choice:
       playerSelection = prompt("Pick one, meatbag:", "Rock, Paper, or Scissors");
       // capitalize:
@@ -101,8 +102,21 @@
       
       console.log(result);
 
-      
-      return "Here is where the score will go later.";
+      if (gameCount < 4) {
+        console.log("The score is Computer: " + computerScore + ", You: " + playerScore + ".");  
+        gameCount++;
+        game();
+      } else if (gameCount == 4) {
+        console.log("The final score is Computer: " + computerScore + ", You: " + playerScore + ".");
+        if (computerScore > playerScore) {
+          endResult = "You are a loser.";
+        } else if (computerScore < playerScore) {
+          endResult = "You are a winner.";
+        } else if (computerScore == playerScore) {
+          endResult = "It's a tie. Yawn.";
+        }
+      }
+      console.log(endResult);
     }
 
   </script>
